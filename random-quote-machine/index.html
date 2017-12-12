@@ -8,7 +8,10 @@
   <title>FCC - Random Quote Machine</title>
   <link rel="stylesheet" type="text/css" href="index.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -19,14 +22,161 @@
   <hr class="my-4">
   <p id="quote-author">Uncle Ben</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="#" role="button">Next Quote</a>
+    <a id="quote-next" class="btn btn-primary btn-lg" href="#" role="button">Next Quote</a>
   </p>
 </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script type="text/javascript">
+  var quotes = [
+  {
+    "content":"The critical ingredient is getting off your butt and doing something. It's as simple as that. A lot of people have ideas, but there are few who decide to do something about them now. Not tomorrow. Not next week. But today. The true entrepreneur is a doer, not a dreamer.",
+    "author": "Nolan Bushnell, Entrepreneur"
+  },
+  {
+    "content": "Do. Or do not. There is no try.",
+    "author": "Yoda, Jedi Master"
+    },
+  {
+    "content": "To any entrepreneur: if you want to do it, do it now. If you don't, you're going to regret it.",
+    "author": "Catherine Cook, co-founder of MyYearbook"
+    },
+  {
+    "content": "It's not about ideas. It's about making ideas happen.",
+    "author": "Scott Belsky, co-founder of Behance"
+    },
+  {
+    "content": "I've missed more than 9,000 shots in my career. I've lost almost 300 games. 26 times I've been trusted to take the game's winning shot and missed. I've failed over and over and over again in my life and that's why I succeed.",
+    "author": "Michael Jordan, NBA Hall of Famer"
+    },
+  {
+    "content": "There's nothing wrong with staying small. You can do big things with a small team.",
+    "author": "Jason Fried, founder of 37signal"
+    },
+  {
+    "content": "Ideas are easy. Implementation is hard.",
+    "author": "Guy Kawasaki, founder of AllTop"
+    },
+  {
+    "content": "If you just work on stuff that you like and you're passionate about, you don't have to have a master plan with how things will play out.",
+    "author": "Mark Zuckerberg, founder of Facebook"
+    },
+  {
+    "content": "The best time to plant a tree was 20 years ago. The second best time is now.",
+    "author": "Chinese proverb"
+    },
+  {
+    "content": "Never give in-never, never, never, never, in nothing great or small, large or petty, never give in except to convictions of honour and good sense. Never yield to force; never yield to the apparently overwhelming might of the enemy.",
+    "author": "Winston Churchill, British Prime Minister"
+    },
+  {
+    "content": "There's lots of bad reasons to start a company. But there's only one good, legitimate reason, and I think you know what it is: it's to change the world.",
+    "author": "Phil Libin, CEO of Evernote"
+    },
+  {
+    "content": "The secret to successful hiring is this: look for the people who want to change the world.",
+    "author": "Marc Benioff, CEO of Salesforce"
+    },
+  {
+    "content": "The price of success is hard work, dedication to the job at hand, and the determination that whether we win or lose, we have applied the best of ourselves to the task at hand.",
+    "author": "Vince Lombardi, head coach of the Green Bay Packers (1959-1967)"
+    },
+  {
+    "content": "When everything seems to be going against you, remember that the airplane takes off against the wind, not with it.",
+    "author": "Henry Ford, founder of Ford Motor Company"
+    },
+  {
+    "content": "If you're not a risk taker, you should get the hell out of business.",
+    "author": "Ray Kroc, founder of McDonald's"
+    },
+  {
+    "content": "Watch, listen, and learn. You can't know it all yourself. Anyone who thinks they do is destined for mediocrity.",
+    "author": "Donald Trump, chairman of The Trump Organization, the Trump Plaza Associates, LLC"
+    },
+  {
+    "content": "Always deliver more than expected.",
+    "author": "Larry Page, co-founder of Google"
+    },
+  {
+    "content": "Twenty years from now, you will be more disappointed by the things that you didn't do than by the ones you did do, so throw off the bowlines, sail away from safe harbor, catch the trade winds in your sails. Explore, Dream, Discover.",
+    "author": "Mark Twain, author"
+    },
+  {
+    "content": "You shouldn't focus on why you can't do something, which is what most people do. You should focus on why perhaps you can, and be one of the exceptions.",
+    "author": "Steve Case, co-founder of AOL"
+    },
+  {
+    "content": "A person who never made a mistake never tried anything new.",
+    "author": "Albert Einstein, physicist"
+    },
+  {
+    "content": "Risk more than others think is safe. Dream more than others think is practical.",
+    "author": "Howard Schultz, CEO of Starbucks"
+    },
+  {
+    "content": "I'm convinced that about half of what separates the successful entrepreneurs from the non-successful ones is pure perseverance.",
+    "author": "Steve Jobs, co-founder and CEO of Apple"
+    },
+  {
+    "content": "Be undeniably good. No marketing effort or social media buzzword can be a substitute for that.",
+    "author": "Anthony Volodkin, founder of HypeMachine"
+    },
+  {
+    "content": "You miss 100 percent of the shots you don't take.",
+    "author": "Wayne Gretzky, NHL Hall of Famer."
+    },
+  {
+    "content": "Do not be embarrassed by your failures, learn from them and start again.",
+    "author": "Richard Branson, founder of the Virgin Group"
+    },
+  {
+    "content": "It's almost always harder to raise capital than you thought it would be, and it always takes longer. So plan for that.",
+    "author": "Richard Harroch, Venture Capitalist"
+    },
+  {
+    "content": "If you don't know what to do with your life, do something that saves lives. The world is full of of people in need, be the part of their life that fills that need.",
+    "author": "Sanjeev Saxena"
+    },
+  {
+    "content": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius"
+    },
+  {
+    "content": "I hate how many people think, 'glass half-empty' when their glass is really four-fifths full. I'm grateful when I have one drop in the glass because I know exactly what to do with it.",
+    "author": "Gary Vaynerchuk, co-founder and CEO of VaynerMedia"
+    },
+  {
+    "content": "It's hard to beat a person who never gives up.",
+    "author": "Babe Ruth, Major League Baseball Hall of Famer"
+    }
+  ]
+
+  function getQuote() {
+    var quoteNum=randomIntFromInterval(0,29);
+    jQuery(document).ready(function ($) {
+        $( "#quote-message" ).html( '\"'+quotes[quoteNum].content+'\"' );
+        $( "#quote-author" ).html( quotes[quoteNum].author );
+    });
+}
+
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+$( "#quote-next" ).click(function(e) {
+  e.preventDefault()
+  getQuote();
+});
+
+getQuote();
+</script>
 </body>
 
 </html>
