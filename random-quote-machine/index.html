@@ -22,7 +22,8 @@
   <hr class="my-4">
   <p id="quote-author">Uncle Ben</p>
   <p class="lead">
-    <a id="quote-next" class="btn btn-primary btn-lg" href="#" role="button">Next Quote</a>
+     <button id="quote-next" class="btn btn-primary btn-lg float-right" role="button">Next Quote</button>
+    <a id="quote-tweet" target="_blank" class="btn btn-primary btn-lg" role="button">Tweet</a>
   </p>
 </div>
 </div>
@@ -162,7 +163,12 @@
     jQuery(document).ready(function ($) {
         $( "#quote-message" ).html( '\"'+quotes[quoteNum].content+'\"' );
         $( "#quote-author" ).html( quotes[quoteNum].author );
+        $("#quote-tweet").attr("href", "https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=\""+quotes[quoteNum].content+"\" "+quotes[quoteNum].author)
     });
+
+    
+
+
 }
 
 function randomIntFromInterval(min,max)
